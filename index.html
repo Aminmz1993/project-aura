@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090914">
+<title>PROJECT AURA</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #090914;
+    color: white;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    padding: 22px;
+    padding-bottom: 110px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    background: linear-gradient(90deg,#a855f7,#38bdf8);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.premium {
+    border: 1px solid #8b5cf6;
+    border-radius: 20px;
+    padding: 9px 14px;
+    color: #c4b5fd;
+    font-size: 12px;
+}
+
+h1 {
+    font-size: 29px;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #9292aa;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.section-title {
+    font-size: 18px;
+    margin: 28px 0 16px;
+}
+
+.mood-card {
+    background: linear-gradient(135deg,#32115d,#132e65,#10152d);
+    border: 1px solid #514078;
+    border-radius: 25px;
+    padding: 23px;
+    position: relative;
+    overflow: hidden;
+}
+
+.mood-card:after {
+    content: "";
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    right: -50px;
+    top: -55px;
+    background: #a855f7;
+    filter: blur(85px);
+    opacity: .55;
+}
+
+.mood-label {
+    color: #c4b5fd;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.mood-card h2 {
+    font-size: 25px;
+    margin: 12px 0;
+}
+
+.mood-card p {
+    color: #c5c3df;
+    font-size: 13px;
+}
+
+.energy {
+    margin-top: 20px;
+    color: #ddd6fe;
+    font-size: 12px;
+}
+
+.energy-bar {
+    height: 6px;
+    background: #ffffff25;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.energy-fill {
+    width: 75%;
+    height: 100%;
+    background: linear-gradient(90deg,#a855f7,#38bdf8);
+    border-radius: 10px;
+}
+
+.player {
+    background: #151525;
+    border: 1px solid #34304f;
+    border-radius: 25px;
+    padding: 20px;
+}
+
+.album {
+    width: 165px;
+    height: 165px;
+    margin: 5px auto 22px;
+    border-radius: 25px;
+    background: radial-gradient(circle at 35% 30%,#f0abfc,#9333ea 40%,#172554 85%);
+    box-shadow: 0 0 45px #9333ea65;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+}
+
+.track-info {
+    text-align: center;
+}
+
+.track-info h2 {
+    font-size: 19px;
+    margin-bottom: 7px;
+}
+
+.track-info p {
+    color: #9292aa;
+    font-size: 13px;
+}
+
+.visualizer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    height: 45px;
+    margin: 18px 0;
+}
+
+.visualizer span {
+    width: 4px;
+    height: 15px;
+    border-radius: 10px;
+    background: linear-gradient(#c084fc,#38bdf8);
+    animation: pulse .7s infinite alternate ease-in-out;
+}
+
+.visualizer span:nth-child(2n) {
+    animation-delay: .3s;
+}
+
+.visualizer span:nth-child(3n) {
+    animation-delay: .5s;
+}
+
+@keyframes pulse {
+    from { height: 8px; }
+    to { height: 38px; }
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.controls button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.controls .play {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: linear-gradient(135deg,#a855f7,#3b82f6);
+    box-shadow: 0 0 25px #8b5cf688;
+}
+
+.song {
+    display: flex;
+    align-items: center;
+    background: #151525;
+    border: 1px solid #292940;
+    padding: 12px;
+    border-radius: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.song-art {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    background: linear-gradient(135deg,#7c3aed,#2563eb);
+    margin-right: 13px;
+}
+
+.song-info {
+    flex: 1;
+}
+
+.song-info h3 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.song-info p {
+    color: #9292aa;
+    font-size: 12px;
+}
+
+.song span {
+    color: #a78bfa;
+}
+
+nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 75px;
+    background: #10101df5;
+    border-top: 1px solid #292940;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 5;
+}
+
+nav button {
+    background: none;
+    border: none;
+    color: #9292aa;
+    font-size: 12px;
+}
+
+nav button:first-child {
+    color: #c084fc;
+}
+
+nav b {
+    display: block;
+    font-size: 21px;
+    margin-bottom: 4px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">AURA</div>
+    <div class="premium">✦ PREMIUM</div>
+</header>
+
+<h1>Feel the music.</h1>
+<p class="subtitle">Your personal AI music universe.</p>
+
+<div class="mood-card">
+    <div class="mood-label">AI MOOD DETECTION</div>
+    <h2>Dreamy & Energetic ✨</h2>
+    <p>Your music journey starts here.</p>
+
+    <div class="energy">ENERGY LEVEL · 75%</div>
+    <div class="energy-bar">
+        <div class="energy-fill"></div>
+    </div>
+</div>
+
+<h2 class="section-title">Now Playing</h2>
+
+<div class="player">
+
+    <div class="album">♫</div>
+
+    <div class="track-info">
+        <h2 id="trackName">Midnight Dreams</h2>
+        <p id="artistName">AURA Selection</p>
+    </div>
+
+    <div class="visualizer" id="visualizer">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+    </div>
+
+    <div class="controls">
+        <button onclick="previousSong()">⏮</button>
+        <button class="play" id="playButton" onclick="togglePlay()">▶</button>
+        <button onclick="nextSong()">⏭</button>
+    </div>
+
+</div>
+
+<h2 class="section-title">Your Music</h2>
+
+<div id="songList">
+
+    <div class="song" onclick="selectSong(0)">
+        <div class="song-art"></div>
+        <div class="song-info">
+            <h3>Midnight Dreams</h3>
+            <p>AURA Selection</p>
+        </div>
+        <span>♫</span>
+    </div>
+
+    <div class="song" onclick="selectSong(1)">
+        <div class="song-art"></div>
+        <div class="song-info">
+            <h3>Neon Horizon</h3>
+            <p>AURA Selection</p>
+        </div>
+        <span>♫</span>
+    </div>
+
+    <div class="song" onclick="selectSong(2)">
+        <div class="song-art"></div>
+        <div class="song-info">
+            <h3>Beyond The Stars</h3>
+            <p>AURA Selection</p>
+        </div>
+        <span>♫</span>
+    </div>
+
+</div>
+
+<nav>
+    <button><b>⌂</b>Home</button>
+    <button><b>♫</b>Library</button>
+    <button><b>✧</b>AI DJ</button>
+    <button><b>⚙</b>Sound</button>
+</nav>
+
+<script>
+
+const songs = [
+    {name:"Midnight Dreams",artist:"AURA Selection"},
+    {name:"Neon Horizon",artist:"AURA Selection"},
+    {name:"Beyond The Stars",artist:"AURA Selection"}
+];
+
+let currentSong = 0;
+let playing = false;
+
+function selectSong(index) {
+    currentSong = index;
+    updatePlayer();
+    playing = true;
+    updatePlayButton();
+}
+
+function updatePlayer() {
+    document.getElementById("trackName").textContent =
+        songs[currentSong].name;
+
+    document.getElementById("artistName").textContent =
+        songs[currentSong].artist;
+}
+
+function togglePlay() {
+    playing = !playing;
+    updatePlayButton();
+}
+
+function updatePlayButton() {
+    document.getElementById("playButton").textContent =
+        playing ? "Ⅱ" : "▶";
+
+    document.getElementById("visualizer").style.opacity =
+        playing ? "1" : ".25";
+}
+
+function nextSong() {
+    currentSong = (currentSong + 1) % songs.length;
+    updatePlayer();
+}
+
+function previousSong() {
+    currentSong = (currentSong - 1 + songs.length) % songs.length;
+    updatePlayer();
+}
+
+</script>
+
+</body>
+</html>
